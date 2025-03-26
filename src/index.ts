@@ -1,4 +1,4 @@
-import { env } from "process";
+import { env } from "../config/env";
 import app from "./app";
 import connectDB from "./db/connection";
 
@@ -11,5 +11,5 @@ connectDB()
     });
   })
   .catch((err) => {
-    console.log("Error loading the server", err);
+    console.log("Error in making the server", err);
   });

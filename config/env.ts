@@ -34,7 +34,30 @@ export const env = {
   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET || "",
   // Cookie
   COOKIE_SECRET: process.env.COOKIE_SECRET || "your-cookie-secret",
+  FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:3000",
 } as const;
 
 // Type guard to check if we're in production
 export const isProduction = env.NODE_ENV === "production";
+
+// import { z } from "zod";
+// import dotenv from "dotenv";
+
+// // Load .env file
+// dotenv.config();
+
+// // Define schema for environment variables
+// const envSchema = z.object({
+//   NODE_ENV: z.enum(["development", "production", "test"]).default("development"),
+//   PORT: z.string().default("3000").transform(Number), // Ensures PORT is a number
+//   MONGODB_URI: z.string().url(), // Ensures it's a valid URL
+//   JWT_SECRET: z.string().min(10, "JWT_SECRET must be at least 10 characters"),
+//   JWT_EXPIRES_IN: z.string().default("7d"),
+//   CLOUDINARY_CLOUD_NAME: z.string().optional(), // Not required
+//   CLOUDINARY_API_KEY: z.string().optional(),
+//   CLOUDINARY_API_SECRET: z.string().optional(),
+//   COOKIE_SECRET: z.string().default("your-cookie-secret"),
+// });
+
+// // Parse and validate process.env
+// export const env = envSchema.parse(process.env);
