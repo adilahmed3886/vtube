@@ -1,5 +1,3 @@
-import { text } from "express";
-
 class ApiError extends Error {
     constructor(
         public statusCode: number,
