@@ -3,7 +3,7 @@ class ApiError extends Error {
         public statusCode: number,
         public message: string = "Something went wrong",
         public errors: Error[] = [],
-        public stack?: string,
+        public stack: string = "",
         public data: null = null,
         public isSuccess: boolean = false,
 

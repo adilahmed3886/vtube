@@ -11,7 +11,7 @@ app.use(cors({
   credentials: true,
 }));
 app.use(express.urlencoded({ extended: true, limit: "16kb" }));
-app.use(express.static(path.resolve(__dirname, "../public")));
+app.use(express.static(path.resolve(__dirname, "../public/temp")));
 app.use(cookieParser());
 
 

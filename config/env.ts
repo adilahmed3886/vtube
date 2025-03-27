@@ -26,8 +26,10 @@ export const env = {
   PORT: process.env.PORT || 3000,
   MONGODB_URI: process.env.MONGODB_URI || "mongodb://localhost:27017/myapp",
   // JWT
-  JWT_SECRET: process.env.JWT_SECRET || "your-secret-key",
-  JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || "7d",
+  ACCESS_TOKEN_SECRET: process.env.ACCESS_TOKEN_SECRET || "your-secret-key",
+  ACCESS_TOKEN_EXPIRY: process.env.ACCESS_TOKEN_EXPIRY || "15m",
+  REFRESH_TOKEN_SECRET: process.env.REFRESH_TOKEN_SECRET || "your-refresh-token-secret",
+  REFRESH_TOKEN_EXPIRY: process.env.REFRESH_TOKEN_EXPIRY || "7d",
   // Cloudinary
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME || "",
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY || "",
