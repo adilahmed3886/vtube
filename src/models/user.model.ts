@@ -1,4 +1,4 @@
-import mongoose, { Document, Model, Schema } from "mongoose";
+import mongoose, { Document, Model, Schema, Types } from "mongoose";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import { env } from "../../config/env";
@@ -11,6 +11,7 @@ interface JWTPayload {
 }
 
 interface IUser extends Document {
+    _id: Types.ObjectId;
     displayName: string;
     email: string;
     password: string;
@@ -20,9 +21,9 @@ interface IUser extends Document {
     bio?: string;
     refreshToken?: string;
     watchHistory: mongoose.Types.ObjectId[];
-    generateAccessToken: () => string;
-    generateRefreshToken: () => string;
-    comparePassword: (password: string) => Promise<boolean>;
+    comparePassword(password: string): Promise<boolean>;
+    generateAccessToken(): string;
+    generateRefreshToken(): string;
 }
 
 const userSchema = new Schema<IUser>({
