@@ -4,11 +4,12 @@ import { Request } from "express";
 
 const storage = multer.diskStorage({
     destination: function(req: Request, file, cb){
-        cb(null, path.resolve(__dirname, '../public/temp'))
+        const tempPath = path.resolve(__dirname, '../../public/temp');
+        cb(null, tempPath);
     },
     filename: function(req: Request, file, cb){
-        cb(null, file.originalname)
+        cb(null, file.originalname);
     }
-})
+});
 
-export const upload = multer({ storage })
+export const upload = multer({ storage });
