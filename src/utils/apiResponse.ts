@@ -1,4 +1,4 @@
-class ApiRespose<T> {
+class ApiResponse<T> {
     constructor(
         public statusCode: number,
         public message: string = "Success!",
@@ -6,4 +6,4 @@ class ApiRespose<T> {
     ){}
 }
 
-export { ApiRespose }
+export { ApiResponse }

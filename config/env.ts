@@ -1,18 +1,15 @@
 import dotenv from "dotenv";
 import path from "path";
 
-// Determine which .env file to load based on NODE_ENV
 const envFile =
   process.env.NODE_ENV === "production"
     ? ".env.production.local"
     : ".env.development.local";
 
-// Load the appropriate .env file
 const result = dotenv.config({
   path: path.resolve(__dirname, `../${envFile}`),
 });
 
-// Debug: Check if .env file was loaded
 if (result.error) {
   console.error("Error loading .env file:", result.error);
 } else {
@@ -20,7 +17,6 @@ if (result.error) {
   console.log("MONGODB_URI from process.env:", process.env.MONGODB_URI);
 }
 
-// Export environment variables with type safety
 export const env = {
   NODE_ENV: process.env.NODE_ENV || "development",
   PORT: process.env.PORT || 3000,
@@ -39,7 +35,6 @@ export const env = {
   FRONTEND_URL: process.env.FRONTEND_URL || "http://localhost:3000",
 } as const;
 
-// Type guard to check if we're in production
 export const isProduction = env.NODE_ENV === "production";
 
 // import { z } from "zod";
