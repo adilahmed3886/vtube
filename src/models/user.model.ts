@@ -10,14 +10,19 @@ interface JWTPayload {
     displayName?: string;
 }
 
+interface CloudinaryAsset {
+    public_id: string;
+    url: string;
+}
+
 interface IUser extends Document {
     _id: Types.ObjectId;
     displayName: string;
     email: string;
     password: string;
     username: string;
-    avatar: string;
-    coverImage?: string;
+    avatar?: CloudinaryAsset;
+    coverImage?: CloudinaryAsset;
     bio?: string;
     refreshToken?: string;
     watchHistory: mongoose.Types.ObjectId[];
@@ -41,38 +46,40 @@ const userSchema = new Schema<IUser>({
         unique: true,
         lowercase: true
     },
-    password: {
-        type: String,
-        required: [true, "Password is required"]
-    },
     username: {
         type: String,
-        required: [true, "Username is required"],
+        required: true,
         trim: true,
         index: true,
         unique: true,
         lowercase: true
     },
-    avatar: {
+    password: {
         type: String,
-        required: [true, "Avatar is required"]
+        required: true,
+        select: false
+    },
+    avatar: {
+        public_id: String,
+        url: String
     },
     coverImage: {
-        type: String
+        public_id: String,
+        url: String
     },
     bio: {
-        type: String
+        type: String,
+        trim: true
     },
     refreshToken: {
-        type: String
-    }, 
-    watchHistory: [
-        {
-            type: Schema.Types.ObjectId,
-            ref: "Video"
-        }
-    ]
-},{timestamps: true})
+        type: String,
+        select: false
+    },
+    watchHistory: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Video"
+    }]
+}, { timestamps: true })
 
 userSchema.pre("save", async function(next){
     if (!this.isModified("password")) return next();
