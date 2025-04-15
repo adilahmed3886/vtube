@@ -1,12 +1,17 @@
 import mongoose, { Document, Model, Schema } from "mongoose";
 
+interface CloudinaryAsset {
+    public_id: string;
+    url: string;
+}
+
 interface IVideo extends Document {
     title: string;
-    video: string;
+    video: CloudinaryAsset;
     views: number;
     duration: number;
     isPublished: boolean;
-    thumbnail?: string;
+    thumbnail?: CloudinaryAsset;
     description?: string;
     owner: mongoose.Types.ObjectId;
     likes: mongoose.Types.ObjectId[];
@@ -20,13 +25,12 @@ const videoSchema = new Schema<IVideo>({
         required: [true, "Title is required"],
     },
     video: {
-        type: String,
-        required: [true, "Video link is required"],
-        trim: true
+        public_id: String,
+        url: String
     },
     thumbnail: {
-        type: String,
-        trim: true
+        public_id: String,
+        url: String
     },
     description: {
         type: String,
